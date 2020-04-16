@@ -8,7 +8,13 @@ calcite modal allows you to show a modal/dialog to your users. The modal handles
   <div slot="content">
     The actual content of the modal
   </div>
-  <calcite-button slot="back" color="light" appearance="outline" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z" width="full">
+  <calcite-button
+    slot="back"
+    color="light"
+    appearance="outline"
+    icon="chevron-left"
+    width="full"
+  >
     Back
   </calcite-button>
   <calcite-button slot="secondary" width="full" appearance="outline">
@@ -32,13 +38,13 @@ modal.open();
 The `open` method returns a promise which will resolve when the animation has completed:
 
 ```js
-modal.open().then(el => console.log(el)); // => <calcite-modal> element
+modal.open().then((el) => console.log(el)); // => <calcite-modal> element
 ```
 
 If you'd like to perform some actions prior to closing (ie. warning users they will lose their changes) you can pass a function to the `beforeClose` property. This method will be called prior to close and should return a Promise:
 
 ```js
-function beforeClose () {
+function beforeClose() {
   return new Promise((resolve) => {
     // do something async
     resolve(); // this will trigger the close animation
@@ -63,7 +69,7 @@ modal.open();
 | `firstFocus`    | --               | Specify an element to focus when the modal is first opened                                                   | `HTMLElement`                                    | `undefined`                   |
 | `noPadding`     | `no-padding`     | Turn off spacing around the content area slot                                                                | `boolean`                                        | `undefined`                   |
 | `size`          | `size`           | Set the overall size of the modal                                                                            | `"fullscreen" \| "large" \| "medium" \| "small"` | `"small"`                     |
-| `theme`         | `theme`          | Select theme (light or dark)                                                                                 | `"dark" \| "light"`                              | `"light"`                     |
+| `theme`         | `theme`          | Select theme (light or dark)                                                                                 | `"dark" \| "light"`                              | `undefined`                   |
 
 
 ## Events
@@ -116,6 +122,19 @@ Type: `Promise<void>`
 
 
 
+
+## Dependencies
+
+### Depends on
+
+- [calcite-icon](../calcite-icon)
+
+### Graph
+```mermaid
+graph TD;
+  calcite-modal --> calcite-icon
+  style calcite-modal fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

@@ -8,16 +8,15 @@ import {
   Listen,
   h,
   Method,
-  State
+  State,
 } from "@stencil/core";
-import { x24 } from "@esri/calcite-ui-icons";
 import { queryShadowRoot, isHidden, isFocusable } from "@a11y/focus-trap";
-import { getElementDir, getElementTheme } from "../../utils/dom";
+import { getElementDir } from "../../utils/dom";
 
 @Component({
   tag: "calcite-modal",
   styleUrl: "calcite-modal.scss",
-  shadow: true
+  shadow: true,
 })
 export class CalciteModal {
   //--------------------------------------------------------------------------
@@ -50,7 +49,7 @@ export class CalciteModal {
    * Use color to add importance to desctructive/workflow dialogs. */
   @Prop({ reflect: true }) color?: "red" | "blue";
   /** Select theme (light or dark) */
-  @Prop({ reflect: true }) theme: "light" | "dark" = "light";
+  @Prop({ reflect: true }) theme: "light" | "dark";
   /** Turn off spacing around the content area slot */
   @Prop() noPadding?: boolean;
 
@@ -61,14 +60,12 @@ export class CalciteModal {
   //--------------------------------------------------------------------------
   render() {
     const dir = getElementDir(this.el);
-    const theme = getElementTheme(this.el);
     return (
       <Host
+        dir={dir}
         role="dialog"
         aria-modal="true"
         class={{ "is-active": this.isActive }}
-        dir={dir}
-        theme={theme}
       >
         <div class="modal">
           <div
@@ -80,18 +77,10 @@ export class CalciteModal {
             <button
               class="modal__close"
               aria-label={this.closeLabel}
-              ref={el => (this.closeButton = el)}
+              ref={(el) => (this.closeButton = el)}
               onClick={() => this.close()}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24"
-                width="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d={x24} />
-              </svg>
+              <calcite-icon icon="x" scale="l"></calcite-icon>
             </button>
             <header class="modal__title">
               <slot name="header" />
@@ -99,10 +88,10 @@ export class CalciteModal {
           </div>
           <div
             class={{
-              "modal__content": true,
-              "modal__content--spaced": !this.noPadding
+              modal__content: true,
+              "modal__content--spaced": !this.noPadding,
             }}
-            ref={el => (this.modalContent = el)}
+            ref={(el) => (this.modalContent = el)}
           >
             <slot name="content" />
           </div>
@@ -159,7 +148,7 @@ export class CalciteModal {
     this.isActive = true;
 
     // wait for the modal to open, then handle focus.
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         this.focusElement(this.firstFocus);
         resolve(this.el);
@@ -176,7 +165,7 @@ export class CalciteModal {
       this.previousActiveElement.focus();
       document.documentElement.classList.remove("overflow-hidden");
       this.calciteModalClose.emit();
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => resolve(this.el), 300);
       });
     });
@@ -188,11 +177,7 @@ export class CalciteModal {
       el.focus();
       return;
     }
-    const focusableElements = queryShadowRoot(
-      this.el,
-      isHidden,
-      isFocusable
-    );
+    const focusableElements = queryShadowRoot(this.el, isHidden, isFocusable);
     if (focusableElements.length > 0) {
       focusableElements[0].focus();
     } else {
@@ -234,7 +219,7 @@ export class CalciteModal {
       this.el,
       isHidden,
       isFocusable
-    ).filter(el => !el.getAttribute("data-focus-fence"));
+    ).filter((el) => !el.getAttribute("data-focus-fence"));
     if (focusableElements.length > 0) {
       focusableElements[focusableElements.length - 1].focus();
     } else {

@@ -1,7 +1,5 @@
 # calcite-dropdown-group
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -15,10 +13,10 @@
 
 ## Events
 
-| Event                           | Description | Type               |
-| ------------------------------- | ----------- | ------------------ |
-| `calciteDropdownItemHasChanged` |             | `CustomEvent<any>` |
-| `registerCalciteDropdownGroup`  |             | `CustomEvent<any>` |
+| Event                           | Description | Type                             |
+| ------------------------------- | ----------- | -------------------------------- |
+| `calciteDropdownItemHasChanged` |             | `CustomEvent<any>`               |
+| `registerCalciteDropdownGroup`  |             | `CustomEvent<GroupRegistration>` |
 
 
 ----------------------------------------------

@@ -40,7 +40,6 @@ To use a custom color for the icon fill, you can add a class to the `calcite-ico
  - [calcite-notice](../calcite-notice)
  - [calcite-pagination](../calcite-pagination)
  - [calcite-popover](../calcite-popover)
- - [calcite-tree-item](../calcite-tree-item)
 
 ### Graph
 ```mermaid
@@ -53,7 +52,6 @@ graph TD;
   calcite-notice --> calcite-icon
   calcite-pagination --> calcite-icon
   calcite-popover --> calcite-icon
-  calcite-tree-item --> calcite-icon
   style calcite-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

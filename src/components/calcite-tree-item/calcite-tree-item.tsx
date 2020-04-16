@@ -8,8 +8,9 @@ import {
   State,
   Listen,
   Watch,
-  h
+  h,
 } from "@stencil/core";
+import { chevronRight16 } from "@esri/calcite-ui-icons";
 import { TreeItemSelectDetail } from "../../interfaces/TreeItemSelect";
 import { TreeSelectionMode } from "../../interfaces/TreeSelectionMode";
 import { getElementDir } from "../../utils/dom";
@@ -21,14 +22,14 @@ import {
   UP,
   DOWN,
   HOME,
-  END
+  END,
 } from "../../utils/keys";
 import { nodeListToArray, getSlottedElements } from "../../utils/dom";
 
 @Component({
   tag: "calcite-tree-item",
   styleUrl: "calcite-tree-item.scss",
-  shadow: true
+  shadow: true,
 })
 export class CalciteTreeItem {
   //--------------------------------------------------------------------------
@@ -68,7 +69,7 @@ export class CalciteTreeItem {
           childTree,
           "calcite-tree-item"
         );
-        items.forEach(item => (item.parentExpanded = newValue));
+        items.forEach((item) => (item.parentExpanded = newValue));
       }
     }
   }
@@ -101,13 +102,17 @@ export class CalciteTreeItem {
   render() {
     const dir = getElementDir(this.el);
     const icon = this.hasChildren ? (
-      <calcite-icon
+      <svg
         class="calcite-tree-chevron"
-        icon="chevron-right"
-        scale="s"
+        xmlns="http://www.w3.org/2000/svg"
+        height="16"
+        width="16"
+        viewBox="0 0 16 16"
         onClick={this.iconClickHandler}
         data-test-id="icon"
-      ></calcite-icon>
+      >
+        <path d={chevronRight16} />
+      </svg>
     ) : null;
 
     return (
@@ -130,7 +135,7 @@ export class CalciteTreeItem {
       >
         <div
           class="calcite-tree-node"
-          ref={el => (this.defaultSlotWrapper = el as HTMLElement)}
+          ref={(el) => (this.defaultSlotWrapper = el as HTMLElement)}
         >
           {icon}
           <slot></slot>
@@ -139,7 +144,7 @@ export class CalciteTreeItem {
           class="calcite-tree-children"
           data-test-id="calcite-tree-children"
           role={this.hasChildren ? "group" : undefined}
-          ref={el => (this.childrenSlotWrapper = el as HTMLElement)}
+          ref={(el) => (this.childrenSlotWrapper = el as HTMLElement)}
           onClick={this.childrenClickHandler}
         >
           <slot name="children"></slot>
@@ -165,7 +170,7 @@ export class CalciteTreeItem {
     this.expanded = !this.expanded;
     this.calciteTreeItemSelect.emit({
       modifyCurrentSelection: (e as any).shiftKey,
-      forceToggle: false
+      forceToggle: false,
     });
   }
 
@@ -174,10 +179,10 @@ export class CalciteTreeItem {
     this.expanded = !this.expanded;
     this.calciteTreeItemSelect.emit({
       modifyCurrentSelection: (event as any).shiftKey,
-      forceToggle: true
+      forceToggle: true,
     });
   };
-  childrenClickHandler = event => event.stopPropagation();
+  childrenClickHandler = (event) => event.stopPropagation();
 
   @Listen("keydown") keyDownHandler(e: KeyboardEvent) {
     let root;
@@ -191,7 +196,7 @@ export class CalciteTreeItem {
         break;
       case ENTER:
         // activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.
-        const link = nodeListToArray(this.el.children).find(e =>
+        const link = nodeListToArray(this.el.children).find((e) =>
           e.matches("a")
         ) as HTMLAnchorElement;
 
@@ -270,12 +275,12 @@ export class CalciteTreeItem {
         root = this.el.closest("calcite-tree[root]");
 
         let currentNode = root.children[root.children.length - 1]; // last child
-        let currentTree = nodeListToArray(currentNode.children).find(e =>
+        let currentTree = nodeListToArray(currentNode.children).find((e) =>
           e.matches("calcite-tree")
         );
         while (currentTree) {
           currentNode = currentTree.children[root.children.length - 1];
-          currentTree = nodeListToArray(currentNode.children).find(e =>
+          currentTree = nodeListToArray(currentNode.children).find((e) =>
             e.matches("calcite-tree")
           );
         }

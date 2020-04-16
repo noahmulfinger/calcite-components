@@ -135,6 +135,7 @@ var CalciteTree = /** @class */ (function () {
     });
     return CalciteTree;
 }());
+var chevronRight16 = "M6.293 12l4-4-4-4h1.414l4 4-4 4z";
 var CalciteTreeItem = /** @class */ (function () {
     function CalciteTreeItem(hostRef) {
         var _this = this;
@@ -158,7 +159,7 @@ var CalciteTreeItem = /** @class */ (function () {
             _this.expanded = !_this.expanded;
             _this.calciteTreeItemSelect.emit({
                 modifyCurrentSelection: event.shiftKey,
-                forceToggle: true
+                forceToggle: true,
             });
         };
         this.childrenClickHandler = function (event) { return event.stopPropagation(); };
@@ -198,7 +199,7 @@ var CalciteTreeItem = /** @class */ (function () {
     CalciteTreeItem.prototype.render = function () {
         var _this = this;
         var dir = getElementDir(this.el);
-        var icon = this.hasChildren ? (h("calcite-icon", { class: "calcite-tree-chevron", icon: "chevron-right", scale: "s", onClick: this.iconClickHandler, "data-test-id": "icon" })) : null;
+        var icon = this.hasChildren ? (h("svg", { class: "calcite-tree-chevron", xmlns: "http://www.w3.org/2000/svg", height: "16", width: "16", viewBox: "0 0 16 16", onClick: this.iconClickHandler, "data-test-id": "icon" }, h("path", { d: chevronRight16 }))) : null;
         return (h(Host, { tabindex: this.parentExpanded || this.depth === 1 ? "0" : "-1", dir: dir, "aria-role": "treeitem", "aria-hidden": this.parentExpanded || this.depth === 1 ? undefined : "true", "aria-selected": this.selected
                 ? "true"
                 : this.selectionMode === TreeSelectionMode.Multi ||
@@ -222,7 +223,7 @@ var CalciteTreeItem = /** @class */ (function () {
         this.expanded = !this.expanded;
         this.calciteTreeItemSelect.emit({
             modifyCurrentSelection: e.shiftKey,
-            forceToggle: false
+            forceToggle: false,
         });
     };
     CalciteTreeItem.prototype.keyDownHandler = function (e) {

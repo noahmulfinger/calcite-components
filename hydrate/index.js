@@ -8459,6 +8459,8 @@ class CalciteTree {
     }; }
 }
 
+const chevronRight16 = "M6.293 12l4-4-4-4h1.414l4 4-4 4z";
+
 class CalciteTreeItem {
     constructor(hostRef) {
         registerInstance(this, hostRef);
@@ -8481,10 +8483,10 @@ class CalciteTreeItem {
             this.expanded = !this.expanded;
             this.calciteTreeItemSelect.emit({
                 modifyCurrentSelection: event.shiftKey,
-                forceToggle: true
+                forceToggle: true,
             });
         };
-        this.childrenClickHandler = event => event.stopPropagation();
+        this.childrenClickHandler = (event) => event.stopPropagation();
         this.calciteTreeItemSelect = createEvent(this, "calciteTreeItemSelect", 7);
     }
     expandedHandler(newValue) {
@@ -8492,7 +8494,7 @@ class CalciteTreeItem {
             const [childTree] = getSlottedElements(this.childrenSlotWrapper, "calcite-tree");
             if (childTree) {
                 const items = getSlottedElements(childTree, "calcite-tree-item");
-                items.forEach(item => (item.parentExpanded = newValue));
+                items.forEach((item) => (item.parentExpanded = newValue));
             }
         }
     }
@@ -8520,13 +8522,13 @@ class CalciteTreeItem {
     }
     render() {
         const dir = getElementDir(this.el);
-        const icon = this.hasChildren ? (h("calcite-icon", { class: "calcite-tree-chevron", icon: "chevron-right", scale: "s", onClick: this.iconClickHandler, "data-test-id": "icon" })) : null;
+        const icon = this.hasChildren ? (h("svg", { class: "calcite-tree-chevron", xmlns: "http://www.w3.org/2000/svg", height: "16", width: "16", viewBox: "0 0 16 16", onClick: this.iconClickHandler, "data-test-id": "icon" }, h("path", { d: chevronRight16 }))) : null;
         return (h(Host, { tabindex: this.parentExpanded || this.depth === 1 ? "0" : "-1", dir: dir, "aria-role": "treeitem", "aria-hidden": this.parentExpanded || this.depth === 1 ? undefined : "true", "aria-selected": this.selected
                 ? "true"
                 : this.selectionMode === TreeSelectionMode.Multi ||
                     this.selectionMode === TreeSelectionMode.MultiChildren
                     ? "false"
-                    : undefined, "aria-expanded": this.hasChildren ? this.expanded.toString() : undefined }, h("div", { class: "calcite-tree-node", ref: el => (this.defaultSlotWrapper = el) }, icon, h("slot", null)), h("div", { class: "calcite-tree-children", "data-test-id": "calcite-tree-children", role: this.hasChildren ? "group" : undefined, ref: el => (this.childrenSlotWrapper = el), onClick: this.childrenClickHandler }, h("slot", { name: "children" }))));
+                    : undefined, "aria-expanded": this.hasChildren ? this.expanded.toString() : undefined }, h("div", { class: "calcite-tree-node", ref: (el) => (this.defaultSlotWrapper = el) }, icon, h("slot", null)), h("div", { class: "calcite-tree-children", "data-test-id": "calcite-tree-children", role: this.hasChildren ? "group" : undefined, ref: (el) => (this.childrenSlotWrapper = el), onClick: this.childrenClickHandler }, h("slot", { name: "children" }))));
     }
     //--------------------------------------------------------------------------
     //
@@ -8544,7 +8546,7 @@ class CalciteTreeItem {
         this.expanded = !this.expanded;
         this.calciteTreeItemSelect.emit({
             modifyCurrentSelection: e.shiftKey,
-            forceToggle: false
+            forceToggle: false,
         });
     }
     keyDownHandler(e) {
@@ -8557,7 +8559,7 @@ class CalciteTreeItem {
                 break;
             case ENTER:
                 // activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.
-                const link = nodeListToArray(this.el.children).find(e => e.matches("a"));
+                const link = nodeListToArray(this.el.children).find((e) => e.matches("a"));
                 if (link) {
                     link.click();
                     this.selected = true;
@@ -8622,10 +8624,10 @@ class CalciteTreeItem {
             case END:
                 root = this.el.closest("calcite-tree[root]");
                 let currentNode = root.children[root.children.length - 1]; // last child
-                let currentTree = nodeListToArray(currentNode.children).find(e => e.matches("calcite-tree"));
+                let currentTree = nodeListToArray(currentNode.children).find((e) => e.matches("calcite-tree"));
                 while (currentTree) {
                     currentNode = currentTree.children[root.children.length - 1];
-                    currentTree = nodeListToArray(currentNode.children).find(e => e.matches("calcite-tree"));
+                    currentTree = nodeListToArray(currentNode.children).find((e) => e.matches("calcite-tree"));
                 }
                 currentNode.focus();
                 break;

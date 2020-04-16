@@ -133,6 +133,8 @@ const CalciteTree = class {
     static get style() { return ":root{--calcite-ui-blue:#007ac2;--calcite-ui-blue-hover:#2890ce;--calcite-ui-blue-press:#00619b;--calcite-ui-green:#35ac46;--calcite-ui-green-hover:#50ba5f;--calcite-ui-green-press:#288835;--calcite-ui-yellow:#edd317;--calcite-ui-yellow-hover:#f9e54e;--calcite-ui-yellow-press:#d9bc00;--calcite-ui-red:#d83020;--calcite-ui-red-hover:#e65240;--calcite-ui-red-press:#a82b1e;--calcite-ui-background:#f8f8f8;--calcite-ui-foreground:#fff;--calcite-ui-foreground-hover:#f3f3f3;--calcite-ui-foreground-press:#eaeaea;--calcite-ui-text-1:#151515;--calcite-ui-text-2:#4a4a4a;--calcite-ui-text-3:#6a6a6a;--calcite-ui-border-1:#cacaca;--calcite-ui-border-2:#dfdfdf;--calcite-ui-border-3:#eaeaea;--calcite-ui-border-hover:#9f9f9f;--calcite-ui-border-press:#757575}:host([theme=dark]){--calcite-ui-blue:#00a0ff;--calcite-ui-blue-hover:#0087d7;--calcite-ui-blue-press:#47bbff;--calcite-ui-green:#36da43;--calcite-ui-green-hover:#11ad1d;--calcite-ui-green-press:#44ed51;--calcite-ui-yellow:#ffc900;--calcite-ui-yellow-hover:#f4b000;--calcite-ui-yellow-press:#ffe24d;--calcite-ui-red:#fe583e;--calcite-ui-red-hover:#f3381b;--calcite-ui-red-press:#ff7465;--calcite-ui-background:#202020;--calcite-ui-foreground:#2b2b2b;--calcite-ui-foreground-hover:#353535;--calcite-ui-foreground-press:#404040;--calcite-ui-text-1:#fff;--calcite-ui-text-2:#bfbfbf;--calcite-ui-text-3:#9f9f9f;--calcite-ui-border-1:#4a4a4a;--calcite-ui-border-2:#404040;--calcite-ui-border-3:#353535;--calcite-ui-border-hover:#757575;--calcite-ui-border-press:#9f9f9f}:root{--calcite-border-radius:3px}:host([hidden]){display:none}body{font-family:Avenir Next W01,Avenir Next W00,Avenir Next,Avenir,Helvetica Neue,sans-serif}.overflow-hidden{overflow:hidden}calcite-tab{display:none}calcite-tab[is-active]{display:block}a{color:#007ac2}.hydrated--invisible{visibility:hidden}:host{display:block;outline:none;--calcite-tree-text:#404040;--calcite-tree-text-hover:#151515;--calcite-tree-text-active:#0b0b0b;--calcite-tree-chevron:#bfbfbf;--calcite-tree-chevron-hover:#6a6a6a;--calcite-tree-vertical-padding:0.375rem;--calcite-tree-indicator:#bfbfbf;--calcite-tree-indicator-active:var(--calcite-ui-blue);--calcite-tree-indicator-first-start:0.1rem;--calcite-tree-indicator-first-end:auto;--calcite-tree-indicator-distance-start:0.15rem;--calcite-tree-indicator-distance-end:auto;--calcite-tree-icon-edge-distance-start:-0.2rem;--calcite-tree-icon-edge-distance-end:0;--calcite-tree-icon-content-distance-start:0.375rem;--calcite-tree-icon-content-distance-end:0;--calcite-tree-indent-start:1.4rem;--calcite-tree-indent-end:0;--calcite-tree-children-indent-start:0.25rem;--calcite-tree-children-indent-end:0;--calcite-tree-children-padding-start:1rem;--calcite-tree-children-padding-end:0;--calcite-tree-line-position-start:0.05rem;--calcite-tree-line-position-end:0;--calcite-tree-parent-line-position-start:-0.95rem;--calcite-tree-parent-line-position-end:0;--calcite-tree-line-width:1px;--calcite-tree-hover-line-width:3px}:host([theme=dark]){--calcite-tree-text:#d4d4d4;--calcite-tree-text-hover:#eaeaea;--calcite-tree-text-active:#f3f3f3;--calcite-tree-chevron:#555;--calcite-tree-chevron-hover:#959595;--calcite-tree-indicator:#555;--calcite-tree-indicator-active:var(--calcite-ui-blue)}:host([lines]){--calcite-tree-line:#eaeaea;--calcite-tree-line-hover:#cacaca;--calcite-tree-line-active:var(--calcite-ui-blue)}:host([lines][theme=dark]){--calcite-tree-line:#555;--calcite-tree-line-hover:grey;--calcite-tree-line-active:var(--calcite-ui-blue)}:host([size=s]){--calcite-tree-hover-line-width:2px;--calcite-tree-vertical-padding:0.1875rem;--calcite-tree-children-indent-start:0rem;--calcite-tree-children-padding-start:0.8rem;--calcite-tree-line-position-start:0.3rem;--calcite-tree-parent-line-position-start:-0.5rem}:host([dir=rtl]){--calcite-tree-indicator-first-start:0;--calcite-tree-indicator-first-end:0.1rem;--calcite-tree-indicator-distance-start:auto;--calcite-tree-indicator-distance-end:0.15rem;--calcite-tree-icon-edge-distance-start:auto;--calcite-tree-icon-edge-distance-end:-0.2rem;--calcite-tree-icon-content-distance-start:0;--calcite-tree-icon-content-distance-end:0.375rem;--calcite-tree-indent-start:0;--calcite-tree-indent-end:1.4rem;--calcite-tree-children-indent-start:0;--calcite-tree-children-indent-end:0.25rem;--calcite-tree-children-padding-start:0;--calcite-tree-children-padding-end:1rem;--calcite-tree-line-position-start:0;--calcite-tree-line-position-end:0.05rem;--calcite-tree-parent-line-position-start:0;--calcite-tree-parent-line-position-end:-0.95rem}:host([dir=rtl][size=s]){--calcite-tree-children-indent-end:0rem;--calcite-tree-children-padding-end:0.8rem;--calcite-tree-line-position-end:0.3rem;--calcite-tree-parent-line-position-end:-0.5rem}"; }
 };
 
+const chevronRight16 = "M6.293 12l4-4-4-4h1.414l4 4-4 4z";
+
 const CalciteTreeItem = class {
     constructor(hostRef) {
         core.registerInstance(this, hostRef);
@@ -155,10 +157,10 @@ const CalciteTreeItem = class {
             this.expanded = !this.expanded;
             this.calciteTreeItemSelect.emit({
                 modifyCurrentSelection: event.shiftKey,
-                forceToggle: true
+                forceToggle: true,
             });
         };
-        this.childrenClickHandler = event => event.stopPropagation();
+        this.childrenClickHandler = (event) => event.stopPropagation();
         this.calciteTreeItemSelect = core.createEvent(this, "calciteTreeItemSelect", 7);
     }
     expandedHandler(newValue) {
@@ -166,7 +168,7 @@ const CalciteTreeItem = class {
             const [childTree] = dom.getSlottedElements(this.childrenSlotWrapper, "calcite-tree");
             if (childTree) {
                 const items = dom.getSlottedElements(childTree, "calcite-tree-item");
-                items.forEach(item => (item.parentExpanded = newValue));
+                items.forEach((item) => (item.parentExpanded = newValue));
             }
         }
     }
@@ -194,13 +196,13 @@ const CalciteTreeItem = class {
     }
     render() {
         const dir = dom.getElementDir(this.el);
-        const icon = this.hasChildren ? (core.h("calcite-icon", { class: "calcite-tree-chevron", icon: "chevron-right", scale: "s", onClick: this.iconClickHandler, "data-test-id": "icon" })) : null;
+        const icon = this.hasChildren ? (core.h("svg", { class: "calcite-tree-chevron", xmlns: "http://www.w3.org/2000/svg", height: "16", width: "16", viewBox: "0 0 16 16", onClick: this.iconClickHandler, "data-test-id": "icon" }, core.h("path", { d: chevronRight16 }))) : null;
         return (core.h(core.Host, { tabindex: this.parentExpanded || this.depth === 1 ? "0" : "-1", dir: dir, "aria-role": "treeitem", "aria-hidden": this.parentExpanded || this.depth === 1 ? undefined : "true", "aria-selected": this.selected
                 ? "true"
                 : this.selectionMode === TreeSelectionMode.Multi ||
                     this.selectionMode === TreeSelectionMode.MultiChildren
                     ? "false"
-                    : undefined, "aria-expanded": this.hasChildren ? this.expanded.toString() : undefined }, core.h("div", { class: "calcite-tree-node", ref: el => (this.defaultSlotWrapper = el) }, icon, core.h("slot", null)), core.h("div", { class: "calcite-tree-children", "data-test-id": "calcite-tree-children", role: this.hasChildren ? "group" : undefined, ref: el => (this.childrenSlotWrapper = el), onClick: this.childrenClickHandler }, core.h("slot", { name: "children" }))));
+                    : undefined, "aria-expanded": this.hasChildren ? this.expanded.toString() : undefined }, core.h("div", { class: "calcite-tree-node", ref: (el) => (this.defaultSlotWrapper = el) }, icon, core.h("slot", null)), core.h("div", { class: "calcite-tree-children", "data-test-id": "calcite-tree-children", role: this.hasChildren ? "group" : undefined, ref: (el) => (this.childrenSlotWrapper = el), onClick: this.childrenClickHandler }, core.h("slot", { name: "children" }))));
     }
     //--------------------------------------------------------------------------
     //
@@ -218,7 +220,7 @@ const CalciteTreeItem = class {
         this.expanded = !this.expanded;
         this.calciteTreeItemSelect.emit({
             modifyCurrentSelection: e.shiftKey,
-            forceToggle: false
+            forceToggle: false,
         });
     }
     keyDownHandler(e) {
@@ -231,7 +233,7 @@ const CalciteTreeItem = class {
                 break;
             case keys.ENTER:
                 // activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.
-                const link = dom.nodeListToArray(this.el.children).find(e => e.matches("a"));
+                const link = dom.nodeListToArray(this.el.children).find((e) => e.matches("a"));
                 if (link) {
                     link.click();
                     this.selected = true;
@@ -296,10 +298,10 @@ const CalciteTreeItem = class {
             case keys.END:
                 root = this.el.closest("calcite-tree[root]");
                 let currentNode = root.children[root.children.length - 1]; // last child
-                let currentTree = dom.nodeListToArray(currentNode.children).find(e => e.matches("calcite-tree"));
+                let currentTree = dom.nodeListToArray(currentNode.children).find((e) => e.matches("calcite-tree"));
                 while (currentTree) {
                     currentNode = currentTree.children[root.children.length - 1];
-                    currentTree = dom.nodeListToArray(currentNode.children).find(e => e.matches("calcite-tree"));
+                    currentTree = dom.nodeListToArray(currentNode.children).find((e) => e.matches("calcite-tree"));
                 }
                 currentNode.focus();
                 break;

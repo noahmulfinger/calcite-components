@@ -252,7 +252,7 @@ export class CalciteTooltip {
             "mutable": false,
             "complexType": {
                 "original": "CalcitePlacement",
-                "resolved": "\"auto\" | \"auto-start\" | \"auto-end\" | \"top\" | \"bottom\" | \"right\" | \"left\" | \"top-start\" | \"top-end\" | \"bottom-start\" | \"bottom-end\" | \"right-start\" | \"right-end\" | \"left-start\" | \"left-end\" | \"leading-start\" | \"leading\" | \"leading-end\" | \"trailing-end\" | \"trailing\" | \"trailing-start\"",
+                "resolved": "\"auto\" | \"left\" | \"right\" | \"auto-start\" | \"auto-end\" | \"top\" | \"bottom\" | \"top-start\" | \"top-end\" | \"bottom-start\" | \"bottom-end\" | \"right-start\" | \"right-end\" | \"left-start\" | \"left-end\" | \"leading-start\" | \"leading\" | \"leading-end\" | \"trailing-end\" | \"trailing\" | \"trailing-start\"",
                 "references": {
                     "CalcitePlacement": {
                         "location": "import",

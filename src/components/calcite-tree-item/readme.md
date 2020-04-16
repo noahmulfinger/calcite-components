@@ -39,19 +39,6 @@
 | `calciteTreeItemSelect` |             | `CustomEvent<TreeItemSelectDetail>` |
 
 
-## Dependencies
-
-### Depends on
-
-- [calcite-icon](../calcite-icon)
-
-### Graph
-```mermaid
-graph TD;
-  calcite-tree-item --> calcite-icon
-  style calcite-tree-item fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
